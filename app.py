@@ -4,3 +4,5 @@ import os
 print("Hellooooo")
 for k, v in os.environ.items():
     print(f'{k}={v}')
+
+
