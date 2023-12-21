@@ -7,9 +7,9 @@ for k, v in os.environ.items():
 
 
 # read in secret from file:
-    
-secretFile = open("/run/secrets/", "r")
-
 print("Scour")
 print("Secret:")
+    
+secretFile = open("/run/secrets/github_token", "r")
+
 print(secretFile.read)
