@@ -60,7 +60,7 @@ jobs:
         platforms: linus/x86-64
         push: true
         tags: |
-          $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          ${ECR_REGISTRY}/${ECR_REPOSITORY}:${IMAGE_TAG}
     # - name: Build, tag, and push image to Amazon ECR 🏷
     #   id: build-image
     #   env:
