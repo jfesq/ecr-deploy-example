@@ -54,13 +54,13 @@ jobs:
       env: 
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: mwaa-spike-private
-        IMAGE_TAG: temp-test
+        IMAGE_TAG: ${{ steps.login-ecr.outputs.registry }}/mwaa-spike-private:temp-test
       with:
         context: .
         platforms: linus/x86-64
         push: true
         tags: |
-          ${ECR_REGISTRY}/${ECR_REPOSITORY}:${IMAGE_TAG}
+          $IMAGE_TAG
     # - name: Build, tag, and push image to Amazon ECR 🏷
     #   id: build-image
     #   env:
