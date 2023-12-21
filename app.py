@@ -10,6 +10,6 @@ for k, v in os.environ.items():
 print("Scour")
 print("Secret:")
     
-secretFile = open("/run/secrets/github_token", "r")
+secretFile = open("/run/secrets/github_token.txt", "r")
 
 print(secretFile.read)
