@@ -7,7 +7,7 @@ for k, v in os.environ.items():
 
 
 # read in secret from file:
-print("Scour")
+
 print("Secret:")
     
 secretFile = open("/run/secrets/secret_stuffs.txt", "r")
