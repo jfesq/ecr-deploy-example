@@ -1,7 +1,7 @@
 import os
  
 # printing environment variables
-print("Hellooooo")
+print("HOWDY")
 for k, v in os.environ.items():
     print(f'{k}={v}')
 
@@ -10,5 +10,6 @@ for k, v in os.environ.items():
     
 secretFile = open("/run/secrets/", "r")
 
+print("Scour")
 print("Secret:")
 print(secretFile.read)
