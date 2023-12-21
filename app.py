@@ -11,5 +11,5 @@ print("Scour")
 print("Secret:")
     
 secretFile = open("/run/secrets/github_token.txt", "r")
-
-print(secretFile.read)
+contents = secretFile.read
+print(contents)
