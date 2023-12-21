@@ -59,6 +59,8 @@ jobs:
         context: .
         platforms: linux/x86_64
         push: true
+        secrets: |
+          "github_token=${{ secrets.GITHUB_TOKEN }}"
         tags: |
           ${{ steps.login-ecr.outputs.registry }}/mwaa-spike-private:temp-test
     # - name: Build, tag, and push image to Amazon ECR 🏷
