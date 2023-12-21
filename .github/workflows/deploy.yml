@@ -57,7 +57,7 @@ jobs:
         IMAGE_TAG: ${{ steps.login-ecr.outputs.registry }}/mwaa-spike-private:temp-test
       with:
         context: .
-        platforms: linus/x86-64
+        platforms: linus/x86_64
         push: true
         tags: |
           ${{ steps.login-ecr.outputs.registry }}/mwaa-spike-private:temp-test
