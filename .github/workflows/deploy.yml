@@ -36,16 +36,38 @@ jobs:
         mask-password: true
       uses: aws-actions/amazon-ecr-login@v1
 
-    - name: Build, tag, and push image to Amazon ECR 🏷
-      id: build-image
-      env:
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+    
+    - name: Login to ECR
+      uses: docker/login-action@v3
+      with:
+        registry: ${{ steps.login-ecr.outputs.registry }}
+        username: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        password: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    
+    - name: build and push
+      uses: docker/build-push-action@v5
+      env: 
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: "mwaa-spike-private"
-        IMAGE_TAG: v1
-      run: |
-        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-        echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"    
+        ECR_REPOSITORY: mwaa-spike-private
+        IMAGE_TAG: temp-test
+      with:
+        context: .
+        platforms: linus/x86-64
+        push: true
+        tags: |
+          $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+    # - name: Build, tag, and push image to Amazon ECR 🏷
+    #   id: build-image
+    #   env:
+    #     ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+    #     ECR_REPOSITORY: "mwaa-spike-private"
+    #     IMAGE_TAG: v1
+    #   run: |
+    #     docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+    #     docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+    #     echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"    
       
     # - name: Get AWS ECR creds
     #   env: 
