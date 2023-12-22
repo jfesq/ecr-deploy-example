@@ -1,7 +1,7 @@
 library(readr)
 
 # animal_data <- readr::read_csv('/usr/local/src/myscripts/input_files/animals.csv')
-animal_data <- readr::read_csv('/usr/local/src/myscripts/input_files/animals.csv')
+animal_data <- readr::read_csv('/usr/local/src/myscripts/input_files/animals.csv', lazy = FALSE)
 animal_data$height_in_feet <- round(animal_data$height / 12, 2)
 # readr::write_csv(animal_data,  "/usr/local/src/myscripts/output_files/animals_in_feet.csv")
 readr::write_csv(animal_data,  "/usr/local/src/myscripts/output_files/animals_in_feet.csv")
