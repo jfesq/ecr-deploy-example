@@ -1,5 +1,4 @@
 library(readr)
-library(paws.storage)
 
 # animal_data <- readr::read_csv('/usr/local/src/myscripts/input_files/animals.csv')
 animal_data <- readr::read_csv('/usr/local/src/myscripts/input_files/animals.csv')

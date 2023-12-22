@@ -12,13 +12,12 @@ RUN apt-get update \
 COPY install_libraries.R /tmp/
 RUN Rscript /tmp/install_libraries.R
 
-RUN --mount=type=secret,id=secret_stuffs \
-  cat /run/secrets/secret_stuffs > /usr/local/src/myscripts/.Renviron
-
 # copy this github repo into the Docker image and set as the working directory
 COPY . /usr/local/src/myscripts
 WORKDIR /usr/local/src/myscripts
 
+RUN --mount=type=secret,id=secret_stuffs \
+  cat /run/secrets/secret_stuffs > /usr/local/src/myscripts/.Renviron
 
 
 # Execute the target script
