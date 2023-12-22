@@ -1,21 +1,25 @@
-FROM ubuntu:22.04
-RUN apt-get -y update && apt-get install -y python3
-COPY . /app
+# start with the official R project base image
+FROM r-base:latest
 
+# Install the C/C++ libraries needed to run the script
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends \
+    libssl-dev \
+    libcurl4-openssl-dev \
+    libxml2-dev
+
+# Install the R libraries needed to run the scripts
+COPY install_libraries.R /tmp/
+RUN Rscript /tmp/install_libraries.R
 
 RUN --mount=type=secret,id=secret_stuffs \
-  cat /run/secrets/secret_stuffs > /app/.Renviron
+  cat /run/secrets/secret_stuffs > /usr/local/src/myscripts/.Renviron
 
-
-# Build the string for a file
-
-# write out the .Renviron to the image
-
-
+# copy this github repo into the Docker image and set as the working directory
+COPY . /usr/local/src/myscripts
+WORKDIR /usr/local/src/myscripts
 
 
 
-
-ENV TEST_ENV_VAR=$TEST_VAR
-
-CMD python3 /app/app.py
+# Execute the target script
+CMD ["Rscript", "etl-animal-data-csv.R"]
