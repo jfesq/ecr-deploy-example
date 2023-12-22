@@ -175,3 +175,4 @@ vignettes/*.pdf
 *.knit.md
 
 .env
+.Renviron

@@ -17,7 +17,7 @@ COPY . /usr/local/src/myscripts
 WORKDIR /usr/local/src/myscripts
 
 RUN --mount=type=secret,id=secret_stuffs \
-  cat /run/secrets/secret_stuffs > /usr/local/src/myscripts/.Renviron
+  cp /run/secrets/secret_stuffs /usr/local/src/myscripts/.Renviron
 
 
 # Execute the target script
