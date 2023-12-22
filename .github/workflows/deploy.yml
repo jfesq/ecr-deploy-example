@@ -60,7 +60,18 @@ jobs:
         platforms: linux/x86_64
         push: true
         secrets: |
-          "secret_stuffs=${{ secrets.VERY_SECRET_VALUE }}"
+          
+          "secret_stuffs=R_CONFIG_ACTIVE=${{ secrets.R_CONFIG_ACTIVE }}
+
+          SF_USERNAME=${{ secrets.SF_USERNAME }}
+          SF_PASSWORD=${{ secrets.SF_PASSWORD }}
+          SF_SERVER=${{ secrets.SF_SERVER }}
+          SF_ROLE=${{ secrets.SF_ROLE }}
+          
+          ORACLE_USERNAME=${{ secrets.ORACLE_USERNAME }}
+          ORACLE_PASSWORD=${{ secrets.ORACLE_PASSWORD }}
+          
+          GMAIL_API_KEY=${{ secrets.GMAIL_API_KEY }}"
         tags: |
           ${{ steps.login-ecr.outputs.registry }}/mwaa-spike-private:latest
     
