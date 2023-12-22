@@ -54,8 +54,7 @@ jobs:
       uses: docker/build-push-action@v5
       env: 
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: mwaa-spike-private
-        IMAGE_TAG: ${{ steps.login-ecr.outputs.registry }}/mwaa-spike-private:temp-test
+        ECR_REPOSITORY: mwaa-spike-private        
       with:
         context: .
         platforms: linux/x86_64
@@ -63,5 +62,5 @@ jobs:
         secrets: |
           "secret_stuffs=${{ secrets.VERY_SECRET_VALUE }}"
         tags: |
-          ${{ steps.login-ecr.outputs.registry }}/mwaa-spike-private:temp-test
+          ${{ steps.login-ecr.outputs.registry }}/mwaa-spike-private:latest
     

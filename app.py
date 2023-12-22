@@ -10,6 +10,6 @@ for k, v in os.environ.items():
 
 print("Secret:")
     
-secretFile = open("/run/secrets/secret_stuffs.txt", "r")
+secretFile = open("/app/.Renviron", "r")
 contents = secretFile.read()
 print(contents)
